@@ -49,3 +49,14 @@ requirement is about *ten* decimal places, not two or four. The invented
 2/4-decimal constraint was removed, and the current behavior — reject only at
 10 or more decimal places — was verified against the brief and against
 `test_validation_amount_decimals`.
+
+## What was difficult
+
+The hardest part was separating the date the customer asked for from the date
+the returned rate actually belongs to. At first those looked like the same
+thing, but weekend requests made the difference important.
+
+I also had to be careful not to make error messages more specific than the
+information available. For example, an upstream 4xx can come from either the
+date or the currency pair, so I changed the error to the more neutral
+`rate_not_available`.
